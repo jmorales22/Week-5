@@ -1,0 +1,19 @@
+h1 {
+    text-align: center;
+    color: white;
+    background-color: rebeccapurple;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+#form1 {
+    text-align: center;
+    margin: 20px;
+}
+
+#chuckSays {
+    text-align: center;
+    margin: 40px;
+    color:red;
+    font-size: large;
+}
