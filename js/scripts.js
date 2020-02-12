@@ -4,15 +4,40 @@ let category = 'dev'
 
 const refreshQuoteButton = document.querySelector('#refreshQuote');
 const submitFormButton = document.querySelector('#submitForm');
-const promptNewQuote = document.querySelector('#promptCategory')
+const categoryChangeForm = document.querySelector('#categoryChangeForm');
+const closeModalButton = document.querySelector('#closeModal');
 
 function getQuote(category) {
     const apiURL = `https://api.chucknorris.io/jokes/random?category=${category}`;
     const chuckSaysParagraph = document.querySelector('#chuckSays');
+    const modalWindow = document.querySelector('.modal-overlay');
     get(apiURL).then(function(response){
         chuckSaysParagraph.innerHTML = response.value;
+        modalWindow.classList.toggle('open');
     });
 };
+
+function getCategories() {
+    const apiUrl = `https://api.chucknorris.io/jokes/categories`;
+    const categorySelectLabel = document.querySelector('#categorySelectLabel');
+
+    get(apiUrl).then(function(response){
+        const categoryList = response.filter(function(category) {
+            if (category != 'explicit') {
+                return category;
+            };
+        });
+        //create a select element for our categories
+        const categoryElement = document.createElement('select');
+        categoryList.map(function(category){
+            const categoryOption= document.createElement('option');
+            categoryOption.value = category;
+            categoryOption.text = category;
+            categoryElement.appendChild(categoryOption);
+        });
+        categorySelectLabel.appendChild(categoryElement);
+    });
+}
 
 refreshQuoteButton.addEventListener('click', function(e){
     e.preventDefault();
@@ -21,16 +46,16 @@ refreshQuoteButton.addEventListener('click', function(e){
 
 submitFormButton.addEventListener('click', function(e){
     e.preventDefault();
-    const categoryInput = document.querySelector('#categoryInput')
-    category = categoryInput.value;
+    const categoryInput = document.querySelector('#categoryChangeForm select');
+
+    let category = categoryInput.value;
     getQuote(category);
 })
 
-promptNewQuote.addEventListener('click', function(e) {
-    e.preventDefault();
-    let newCategory = prompt('Select a category: animal, career, celebrity, dev, fashion, food, or history');
-    getQuote(newCategory);
+closeModalButton.addEventListener('click', function(e){
+    const modalWindow = document.querySelector('.modal-overlay');
+    modalWindow.classList.toggle('open');
 })
 
-
 getQuote(category);
+getCategories();

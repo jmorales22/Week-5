@@ -1,3 +1,9 @@
+*,
+*:after,
+*:before {
+    box-sizing: inherit;
+}
+
 h1 {
     text-align: center;
     color: white;
@@ -6,14 +12,88 @@ h1 {
     margin-right: 150px;
 }
 
-#form1 {
+#categoryChangeForm {
     text-align: center;
     margin: 20px;
+}
+#categorySelectLabel {
+    color: white;
 }
 
 #chuckSays {
     text-align: center;
     margin: 40px;
-    color:red;
+    color: black;
+    border-color: white;
+    background: white;
+    border-style: solid;
     font-size: large;
+    margin-left: 150px;
+    margin-right: 150px;
+    padding: 20px;
+}
+.wrapper {
+    margin: 0 auto;
+    max-width: 60rem;
+    width: 100%;
+}
+
+.wrapper-image {
+    display: flex;
+    margin: auto;
+    width: 100%;
+}
+
+.wrapper-image img {
+    height: auto;
+    width: 30%;
+    margin: auto;
+}
+
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+}
+.modal-overlay.open {
+    display:flex;
+}
+
+.modal-content {
+    background-color: #fff;
+    border-radius: 4px;
+    margin: auto;
+    padding: 16px;
+    width: 640px;
+    height: auto;
+    position: relative;
+    z-index: 10000;
+}
+
+.model-content .modal-close {
+    background-color: #000;
+    cursor: pointer;
+    color: #fff;
+    position: absolute;
+    font-size: 16px;
+    padding: 4px;
+    line-height: 1;
+    top: 16px;
+    right: 16px;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    z-index: 10900;
+}
+
+.modal-content p {
+    font-size: 2rem;
 }
